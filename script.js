@@ -46,3 +46,32 @@ window.addEventListener("scroll", function () {
     nav.style.boxShadow = "none";
   }
 });
+
+
+// Close mobile menu when a nav link is clicked
+const navLinksMobile = document.querySelectorAll("nav ul li a");
+
+navLinksMobile.forEach(link => {
+  link.addEventListener("click", () => {
+    // Only close if menu is currently active (mobile)
+    if (navMenu.classList.contains("active")) {
+      navMenu.classList.remove("active");
+    }
+  });
+});
+
+
+
+// Close menu when clicking outside of it
+document.addEventListener("click", function (event) {
+  const navMenu = document.getElementById("navMenu");
+  const hamburger = document.getElementById("hamburger");
+
+  const isClickInsideMenu = navMenu.contains(event.target);
+  const isClickOnHamburger = hamburger.contains(event.target);
+
+  if (!isClickInsideMenu && !isClickOnHamburger && navMenu.classList.contains("active")) {
+    navMenu.classList.remove("active");
+  }
+});
+
